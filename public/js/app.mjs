@@ -31,7 +31,7 @@ class CesarChipherApp{
     }
 
     submit(){
-        ComunicatiomManager.send(API_ENDPOINTS.encrypt.endpoint, {msg:this.#msg, shift:this.#shiftValue})
+        ComunicatiomManager.send(`${API_ENDPOINTS.base}${API_ENDPOINTS.encrypt.endpoint}`, {msg:this.#msg, shift:this.#shiftValue})
     }
 
 }

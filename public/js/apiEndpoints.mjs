@@ -1,6 +1,7 @@
 const API_ENDPOINTS = {
-    encrypt : {endpoint:"api/encrypt", method:"POST"},
-    decrypt : {endpoint:"api/decrypt", method:"POST"}
+    base: "/api",
+    encrypt : {endpoint:"/encrypt", method:"POST"},
+    decrypt : {endpoint:"/decrypt", method:"POST"}
 }
 
 export default API_ENDPOINTS;
