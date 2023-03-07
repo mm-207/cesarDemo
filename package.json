@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mm-207/cesarDemo/issues"
   },
-  "homepage": "https://github.com/mm-207/cesarDemo#readme"
+  "homepage": "https://github.com/mm-207/cesarDemo#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
