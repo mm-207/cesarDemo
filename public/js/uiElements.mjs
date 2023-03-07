@@ -1,7 +1,9 @@
 const UI_ELEMENTS = {
     contentElementId : "content",
     shiftElementId : "shift",
-    submitButtonElementId : "submitBT"
+    submitButtonElementId : "submitBT",
+    decryptButtonElementId : "decryptBT",
+    secreteElementId:"secretID"
 }
 
 
