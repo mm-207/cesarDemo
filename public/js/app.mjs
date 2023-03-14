@@ -1,6 +1,8 @@
 import UI_ELEMENTS from "./uiElements.mjs";
 import ComunicatiomManager from "./comunicationManager.mjs";
-import API_ENDPOINTS from "./apiEndpoints.mjs";
+import apiEndpoints from "./apiEndpoints.mjs";
+
+const {API_ENDPOINTS, USER_ENDPOINT} = apiEndpoints;
 
 class CesarChipherApp{
 
@@ -9,9 +11,20 @@ class CesarChipherApp{
     #shiftValue;
     #secretId;
 
-    constructor(){
+    constructor(authUI){
+
+        
+
         if(!CesarChipherApp.#instance){
             CesarChipherApp.#instance = this;
+            this.authUI = authUI;
+
+            const headers = new Headers()
+            if(headers.get("auth-token") == undefined){
+                this.authUI.classList.remove("hidden");
+            } else{
+                this.authUI.classList.add("hidden");
+            }
         }
         
         return CesarChipherApp.#instance
@@ -44,9 +57,21 @@ class CesarChipherApp{
         await ComunicatiomManager.send(`${API_ENDPOINTS.base}${API_ENDPOINTS.decrypt.endpoint}/${this.#secretId}`, { shift:this.#shiftValue})
     }
 
+    async authenticate(email){
+        const token = await  ComunicatiomManager.send(`${USER_ENDPOINT.base}${USER_ENDPOINT.create.endpoint}`, {msg:this.#msg, shift:this.#shiftValue});
+        console.log(token);
+    }
+
 }
 
-const app = new CesarChipherApp();
+const authUI = document.getElementById("authenticateUI");
+const app = new CesarChipherApp(authUI);
+
+authUI.querySelector("#userAuthButton").onclick = async (e) => {
+    const inputElement = e.target.parentNode.querySelector("#userEmail");
+    CesarChipherApp.instance.authenticate(inputElement.value)
+}
+
 
 async function onUserSubmission (e) {
     CesarChipherApp.instance.message = document.getElementById(UI_ELEMENTS.contentElementId).value;
@@ -61,4 +86,6 @@ document.getElementById(UI_ELEMENTS.decryptButtonElementId).onclick = async (e)=
     await CesarChipherApp.instance.decrypt()
 
 };
+
+
 

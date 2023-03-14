@@ -1,6 +1,9 @@
 import express from 'express'
-import API_ENDPOINTS from './public/js/apiEndpoints.mjs';
+import apiEndpoints from './public/js/apiEndpoints.mjs';
 import encryptionAPIRoute from './routes/encryptionAPI.mjs';
+import userAPIRoute from './routes/userAPI.mjs'
+
+const {API_ENDPOINTS, USER_ENDPOINT}  = apiEndpoints;
 
 const server = express();
 const port = (process.env.PORT || 8080);
@@ -16,8 +19,10 @@ server.use((req,res,next)=>{
 server.use(express.json());
 
 server.use(API_ENDPOINTS.base,encryptionAPIRoute);
+server.use("/user",userAPIRoute);
 
 
 server.listen(server.get('port'), function () {
 console.log('server running', server.get('port'));
 });
+

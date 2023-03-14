@@ -1,7 +1,9 @@
 import express from 'express'
-import API_ENDPOINTS from "../public/js/apiEndpoints.mjs";
+import apiEndpoints from "../public/js/apiEndpoints.mjs";
 import { encrypt,decrypt } from '../modules/chipher.mjs';
 import StorageManager from '../modules/storageManager.mjs';
+
+const {API_ENDPOINTS, USER_ENDPOINT}  = apiEndpoints;
 
 let settings = await import("../NEI.json", { assert: { type: "json" } });
 settings = settings["default"];
