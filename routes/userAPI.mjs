@@ -11,10 +11,10 @@ const connectionString = process.env.DATABASE_URL;
 
 let secret = Math.random().toString(32).substring(2);
 if(process.env.debug ){ // For å ungå å måtte lage nye tokens hver gang vi tester :)
-    secret = process.env["CRYPTO_SEECRET"] ||  settings.CRYPTO_SEECRET;
+    secret = process.env["CRYPTO_SEECRET"] ;
 }
 
-const salt = process.env["SALT"] || settings.SALT
+const salt = process.env["SALT"] 
 
 const userAPIRoute = express.Router();
 
