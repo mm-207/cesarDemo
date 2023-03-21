@@ -8,6 +8,8 @@ const {API_ENDPOINTS, USER_ENDPOINT}  = apiEndpoints;
 const server = express();
 const port = (process.env.PORT || 8080);
 
+console.log("Port set to", port);
+
 server.set('port', port);
 server.use(express.static('public'));
 

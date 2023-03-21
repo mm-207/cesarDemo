@@ -5,9 +5,8 @@ import StorageManager from '../modules/storageManager.mjs';
 
 const {API_ENDPOINTS, USER_ENDPOINT}  = apiEndpoints;
 
-let settings = await import("../NEI.json", { assert: { type: "json" } });
-settings = settings["default"];
-const connectionString = process.env.DATABASE_URL || settings.DATABASE_URL;
+
+const connectionString = process.env.DATABASE_URL;
 
 
 const encryptionAPIRoute = express.Router();

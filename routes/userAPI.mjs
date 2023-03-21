@@ -6,9 +6,8 @@ import apiEndpoints from '../public/js/apiEndpoints.mjs';
 
 const {API_ENDPOINTS, USER_ENDPOINT}  = apiEndpoints;
 
-let settings = await import("../NEI.json", { assert: { type: "json" } });
-settings = settings["default"];
-const connectionString = process.env.DATABASE_URL || settings.DATABASE_URL;
+
+const connectionString = process.env.DATABASE_URL;
 
 let secret = Math.random().toString(32).substring(2);
 if(process.env.debug ){ // For å ungå å måtte lage nye tokens hver gang vi tester :)
